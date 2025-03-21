@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../widgets/left_drawer.dart';
 import 'moodentry_form.dart';
 
-class MenuScreen extends StatefulWidget {
-  const MenuScreen({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<MenuScreen> createState() => _MenuScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MenuScreenState extends State<MenuScreen> {
+class _HomePageState extends State<HomePage> {
   String selectedOption =
       "Pilih Mood"; // Variabel untuk menyimpan pilihan dropdown
   final List<String> moodOptions = [
@@ -18,7 +19,14 @@ class _MenuScreenState extends State<MenuScreen> {
     "Marah",
     "Tenang",
     "Cemas"
-  ]; // List opsi dropdown
+  ];
+
+  void logout() async {
+    await FirebaseAuth.instance.signOut();
+    if (mounted) {
+      Navigator.pushReplacementNamed(context, '/login');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +36,6 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
       drawer: const LeftDrawer(),
       body: SingleChildScrollView(
-        // Menambahkan ScrollView
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -51,10 +58,9 @@ class _MenuScreenState extends State<MenuScreen> {
                 spacing: 20,
                 children: [
                   ActionButton(
-                    icon: Icons.emoji_emotions,
-                    label: "Lihat Mood",
-                    onTap: () {},
-                  ),
+                      icon: Icons.emoji_emotions,
+                      label: "Lihat Mood",
+                      onTap: () {}),
                   ActionButton(
                     icon: Icons.add,
                     label: "Tambah Mood",
@@ -69,7 +75,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   ActionButton(
                     icon: Icons.logout,
                     label: "Logout",
-                    onTap: () {},
+                    onTap: logout,
                   ),
                 ],
               ),
@@ -81,10 +87,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     fontSize: 20,
                     color: Colors.black),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              // Kotak dengan warna gradient
+              const SizedBox(height: 20),
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16.0),
@@ -99,10 +102,9 @@ class _MenuScreenState extends State<MenuScreen> {
                 child: const Text(
                   "Stay positive and track your mental health!",
                   style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -110,10 +112,9 @@ class _MenuScreenState extends State<MenuScreen> {
               Image.asset(
                 "assets/hhh.png",
                 width: double.infinity,
-                fit: BoxFit.cover, 
+                fit: BoxFit.cover,
               ),
               const SizedBox(height: 20),
-              // Dropdown Button
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -126,15 +127,10 @@ class _MenuScreenState extends State<MenuScreen> {
                     value: selectedOption,
                     items: [
                       const DropdownMenuItem(
-                        value: "Pilih Mood",
-                        child: Text("Pilih Mood"),
-                      ),
+                          value: "Pilih Mood", child: Text("Pilih Mood")),
                       ...moodOptions.map((String mood) {
-                        return DropdownMenuItem(
-                          value: mood,
-                          child: Text(mood),
-                        );
-                      }).toList(),
+                        return DropdownMenuItem(value: mood, child: Text(mood));
+                      }),
                     ],
                     onChanged: (String? newValue) {
                       setState(() {
@@ -162,14 +158,9 @@ class UserInfoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          label,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          value,
-          style: const TextStyle(fontSize: 16),
-        ),
+        Text(label,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold)),
+        Text(value, style: const TextStyle(fontSize: 16)),
       ],
     );
   }
@@ -191,9 +182,7 @@ class ActionButton extends StatelessWidget {
     return Column(
       children: [
         IconButton(
-          icon: Icon(icon, size: 40, color: Colors.purple),
-          onPressed: onTap,
-        ),
+            icon: Icon(icon, size: 40, color: Colors.purple), onPressed: onTap),
         Text(label),
       ],
     );

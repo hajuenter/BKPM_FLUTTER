@@ -64,9 +64,9 @@ class _MoodEntryFormState extends State<MoodEntryForm> {
 
   void _saveMood() {
     // Simpan data mood ke backend atau database
-    print("Mood: ${_moodController.text}");
-    print("Feelings: ${_feelingsController.text}");
-    print("Intensity: ${_intensityController.text}");
+    // print("Mood: ${_moodController.text}");
+    // print("Feelings: ${_feelingsController.text}");
+    // print("Intensity: ${_intensityController.text}");
 
     // Setelah disimpan, kembali ke halaman utama
     Navigator.pop(context);

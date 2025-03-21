@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../screens/menu.dart';
-import '../screens/moodentry_form.dart';
+import '../views/home_page.dart';
+import '../views/moodentry_form.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -10,11 +10,11 @@ class LeftDrawer extends StatelessWidget {
     return Drawer(
       child: Column(
         children: [
-          DrawerHeader(
+          const DrawerHeader(
             decoration: BoxDecoration(color: Colors.purple),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   "Mental Health Tracker",
                   style: TextStyle(
@@ -34,7 +34,7 @@ class LeftDrawer extends StatelessWidget {
             title: const Text("Halaman Utama"),
             onTap: () {
               Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => const MenuScreen()));
+                  MaterialPageRoute(builder: (context) => const HomePage()));
             },
           ),
           ListTile(

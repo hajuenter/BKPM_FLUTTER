@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "214034462687",
+    "project_id": "bkpm-flutter",
+    "storage_bucket": "bkpm-flutter.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214034462687:android:1dd2ef1a2fc32c86d3366a",
+        "android_client_info": {
+          "package_name": "com.example.bkpm_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8T4W_B7F796F6Aw7CNQTk8nVPrVTP3_U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
