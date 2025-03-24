@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
+import '../widgets/custom_textfield.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -18,13 +19,14 @@ class _LoginPageState extends State<LoginPage> {
         await _authService.login(emailController.text, passwordController.text);
 
     if (user != null) {
-      if (!mounted) return; // Pastikan widget masih ada sebelum navigasi
+      if (!mounted) return;
       Navigator.pushReplacementNamed(context, '/home');
     } else {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-            content: Text('Login gagal! Periksa kembali email dan password.')),
+          content: Text('Login gagal! Periksa kembali email dan password.'),
+        ),
       );
     }
   }
@@ -37,17 +39,23 @@ class _LoginPageState extends State<LoginPage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
+            CustomTextField(
               controller: emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
+              labelText: 'Email',
             ),
-            TextField(
+            CustomTextField(
               controller: passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(labelText: 'Password'),
+              labelText: 'Password',
+              isPassword: true,
             ),
             const SizedBox(height: 20),
-            ElevatedButton(onPressed: login, child: const Text('Login')),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: login,
+                child: const Text('Login'),
+              ),
+            ),
             TextButton(
               onPressed: () {
                 Navigator.pushNamed(context, '/register');
