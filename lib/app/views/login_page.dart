@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/auth_service.dart';
 import '../widgets/custom_textfield.dart';
+import '../widgets/custom_button.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -51,9 +52,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
-              child: ElevatedButton(
+              child: CustomButton(
+                text: 'Login',
                 onPressed: login,
-                child: const Text('Login'),
               ),
             ),
             TextButton(
